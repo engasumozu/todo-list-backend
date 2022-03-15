@@ -5,18 +5,18 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { CatsController } from './cats/cats.controller';
-import { CatsService } from './cats/cats.service';
-import { CatsModule } from './cats/cats.module';
+import { UserModule } from './user/user.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URI, {}),
-    CatsModule
+    UserModule,
+    AuthorizationModule
   ],
-  controllers: [AppController, CatsController],
-  providers: [AppService, CatsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
