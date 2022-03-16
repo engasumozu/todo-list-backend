@@ -20,7 +20,7 @@ export class UserService {
         }
         const createdUser = new this.userModel(RegisterDTO);
         await createdUser.save();
-        return createdUser;// this.sanitizeUser(createdUser);
+        return this.sanitizeUser(createdUser);
     }
 
     async findByPayload(payload) {
