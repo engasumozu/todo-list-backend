@@ -8,6 +8,7 @@ import { Todo } from '../types/todo';
 export class TodoService {
     constructor(
         @InjectModel('Todo') private todoModel: Model<Todo>,
+        @InjectModel('User') private userModel: Model<User>
     ) { };
 
     async getByUserId(userId: string) {
@@ -19,6 +20,7 @@ export class TodoService {
     }
 
     async create(todo: Todo) {
+        this.validateUser(todo.userId.toString());
         const createdTodo = new this.todoModel(todo);
         createdTodo.when = new Date(todo.when);
         try {
@@ -31,6 +33,7 @@ export class TodoService {
 
     async update(id: string, todo: Todo) {
         try {
+            this.validateUser(todo.userId.toString());
             const updatedTodo = await this.todoModel.findByIdAndUpdate(id, todo, {
                 new: true
             });
@@ -61,4 +64,12 @@ export class TodoService {
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
     }
+
+    validateUser(userId: string) {
+        const user = this.userModel.findById(userId);
+        if (!user) {
+            throw new HttpException('user does not exist', HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

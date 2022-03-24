@@ -33,15 +33,4 @@ export class AuthorizationController {
         const token = await this.authorizationService.signPayload(payload);
         return { user, token };
     }
-
-    @Get("/onlyauth")
-    @UseGuards(AuthGuard("jwt"))
-    async hiddenInformation() {
-        return "hidden information";
-    }
-
-    @Get("/anyone")
-    async publicInformation() {
-        return "this can be seen by anyone";
-    }
 }
