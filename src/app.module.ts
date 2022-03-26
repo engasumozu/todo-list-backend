@@ -20,7 +20,7 @@ import { TodoModule } from './todo/todo.module';
     AuthorizationModule,
     TodoModule
   ],
-  controllers: [AppController, TodoController],
-  providers: [AppService, TodoService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
