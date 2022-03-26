@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { UserSchema } from 'src/schemas/user.schema';
 import { AuthorizationService } from './authorization.service';
 
 describe('AuthorizationService', () => {
@@ -14,5 +15,10 @@ describe('AuthorizationService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('Should return return user', () => {
+    let payload = {};
+    expect(service.validateUser(payload)).toEqual("asdqweqw");
   });
 });
