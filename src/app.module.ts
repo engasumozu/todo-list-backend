@@ -7,8 +7,6 @@ import { AppService } from './app.service';
 
 import { UserModule } from './user/user.module';
 import { AuthorizationModule } from './authorization/authorization.module';
-import { TodoController } from './todo/todo.controller';
-import { TodoService } from './todo/todo.service';
 import { TodoModule } from './todo/todo.module';
 
 
